@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "env": {
+    "GITHUB_TOKEN": "@github_token",
+    "OWNER": "@github_owner",
+    "REPO": "@github_repo",
+    "BRANCH": "@main"
+  },
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "buildCommand": "npm install"
+}
