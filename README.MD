@@ -35,7 +35,7 @@ BRANCH=main(分支，默认main)
 ```shell
 npm run test
 ```
-将在本地8080端口开启服务
+将在本地3008端口开启服务
 你也可以尝试使用Nginx反向代理到80/443端口。
 
 ## LICENSE

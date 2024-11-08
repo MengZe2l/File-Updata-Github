@@ -86,7 +86,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3008;
 app.listen(PORT, () => {
     console.log(`服务器正在运行在 ip地址:${PORT}`);
 });
