@@ -4,37 +4,33 @@ const multer = require('multer');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
-const morgan = require('morgan'); // 请求日志中间件
-const helmet = require('helmet'); // 安全中间件
-const compression = require('compression'); // 压缩中间件
+const morgan = require('morgan');
+const helmet = require('helmet');
+const compression = require('compression');
 
 const app = express();
 const upload = multer({ dest: 'uploads/' });
 
-// 使用中间件
-app.use(helmet()); // 增强 HTTP 头的安全性
-app.use(compression()); // 启用响应压缩
+app.use(helmet());
+app.use(compression());
 app.use(morgan('combined', {
     skip: function (req, res) { return res.statusCode < 400; },
     stream: process.stdout,
-    format: ':method :url :status :res[content-length] - :response-time ms 中文请求日志'
-})); // 请求日志中间件，输出中文提示
+    format: ':method :url :status :res[content-length] - :response-time ms'
+}));
 app.use(express.static('public'));
-app.use(express.json()); // 用于解析 JSON 格式的请求体
-app.use(express.urlencoded({ extended: true })); // 用于解析 URL 编码的请求体
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// 配置环境变量
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const OWNER = process.env.OWNER;
 const REPO = process.env.REPO;
 const BRANCH = process.env.BRANCH;
 const GITHUB_API_BASE = `https://mirror.mengze2.cn/proxy/api.github.com/repos/${OWNER}/${REPO}`;
 
-// 设置视图引擎
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'pages'));
 
-// 首页路由，列出文件
 app.get('/', async (req, res) => {
     try {
         const response = await axios.get(`${GITHUB_API_BASE}/contents/?ref=${BRANCH}`, {
@@ -57,7 +53,6 @@ app.get('/', async (req, res) => {
     }
 });
 
-// 文件上传路由
 app.post('/upload', upload.single('file'), async (req, res) => {
     if (!req.file) {
         return res.status(400).send('未上传文件。');
@@ -83,7 +78,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
             }
         );
 
-        fs.unlinkSync(filePath); // 删除临时文件
+        fs.unlinkSync(filePath);
         res.redirect('/');
     } catch (error) {
         console.error('上传文件到 GitHub 时出错:', error.message);
@@ -91,8 +86,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     }
 });
 
-// 启动服务器
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`服务器正在运行在 http://localhost:${PORT}`);
+    console.log(`服务器正在运行在 ip地址:${PORT}`);
 });
