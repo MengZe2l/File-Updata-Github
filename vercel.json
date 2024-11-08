@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "env": {
-    "GITHUB_TOKEN": "@GITHUB_TOKEN",
-    "OWNER": "@OWNER",
-    "REPO": "@REPO",
-    "BRANCH": "@BRANCH"
-  },
   "builds": [
     {
       "src": "app.js",
