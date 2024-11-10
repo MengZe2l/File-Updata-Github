@@ -6,5 +6,11 @@
       "use": "@vercel/node"
     }
   ],
-  "buildCommand": "npm install"
+  "buildCommand": "npm install",
+  "rewrites": [
+    {
+      "source": "/pages",
+      "destination": "/"
+    }
+  ]
 }
