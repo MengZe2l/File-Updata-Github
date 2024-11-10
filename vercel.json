@@ -12,5 +12,8 @@
       "source": "/pages",
       "destination": "/"
     }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/app.js" }
   ]
 }
