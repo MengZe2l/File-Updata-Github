@@ -86,7 +86,5 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`服务器正在运行在 ip地址:${PORT}`);
-});
+// 导出为 Vercel 函数
+module.exports = app;
