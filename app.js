@@ -86,5 +86,4 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     }
 });
 
-// 导出为 Vercel 函数
 module.exports = app;
