@@ -1,3 +1,6 @@
+> [!TIP]
+> 技术问题导致项目目前无法正常部署到ServerLess中，非Serverless可用，望大佬修复并放在issues里面
+
 ## File-Updata-Github
 这是一个基于Node.js编写的一个工具，使用Github仓库作为储存，支持Serverless平台部署的私有化图床
 >[TIP]
